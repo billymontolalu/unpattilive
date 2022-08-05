@@ -66,8 +66,12 @@ class _HalamanLoginState extends State<HalamanLogin> {
               ElevatedButton(
                   // ignore: sort_child_properties_last
                   child: const Text('LOGIN'),
-                  onPressed: () {
-                    http.get(Uri.parse("http://localhost/unpatti/login.php"));
+                  onPressed: () async {
+                    var response = await http
+                        .get(Uri.parse("http://10.0.2.2/unpatti/login.php"));
+                    if (response.statusCode == 200) {
+                      print(response.body);
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                       primary: const Color.fromARGB(255, 17, 30, 108),
